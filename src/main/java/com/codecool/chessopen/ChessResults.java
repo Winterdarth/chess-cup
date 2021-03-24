@@ -11,7 +11,7 @@ public class ChessResults {
     public List<String> getCompetitorsNamesFromFile(String fileName){
         List<String> competitors = new ArrayList<>();
         List<String[]> results = new ArrayList<>();
-        Map<String, Integer> sortPlayers = new HashMap<>();
+        Map<String, Integer> sortCompetitors = new HashMap<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));){
             String tempData = "";
@@ -34,19 +34,19 @@ public class ChessResults {
 
                 maxPoints = firstMatch + secondMatch + thirdMatch + fourthMatch + fifthMatch;
 
-                sortPlayers.put(result[0], maxPoints);
+                sortCompetitors.put(result[0], maxPoints);
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found!");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<String> orderedNames = new ArrayList<>();
-        sortPlayers.entrySet()
+        List<String> orderedCompetitors = new ArrayList<>();
+        sortCompetitors.entrySet()
                 .stream().sorted(Map.Entry.comparingByValue())
-                .forEachOrdered(nameAvgGradePair -> orderedNames.add(nameAvgGradePair.getKey()));
+                .forEachOrdered(nameAvgGradePair -> orderedCompetitors.add(nameAvgGradePair.getKey()));
 
-        Collections.reverse(orderedNames);
-        return orderedNames;
+        Collections.reverse(orderedCompetitors);
+        return orderedCompetitors;
     }
 }
