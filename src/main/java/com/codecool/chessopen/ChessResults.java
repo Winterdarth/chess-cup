@@ -20,8 +20,8 @@ public class ChessResults {
                 competitors.add(tempData);
             }
 
-            for (String student : competitors) {
-                results.add(student.split(","));
+            for (String competitor : competitors) {
+                results.add(competitor.split(","));
             }
 
             for (String[] result : results) {
